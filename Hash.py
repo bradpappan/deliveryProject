@@ -1,13 +1,10 @@
 # Hash map
-'''
-import pandas as pd
-df = pd.read_csv(r'C:\Users\nelli\Desktop\WGUPS Package File.csv')
-'''
 
 import csv
 
+
 class HashMap:
-    def __init__(self, initial_capacity = 40):
+    def __init__(self, initial_capacity=40):
         self.table = []
         for i in range(initial_capacity):
             self.table.append([])
@@ -42,7 +39,8 @@ class HashMap:
             if kv[0] == key:
                 bucket_list.remove([kv[0], kv[1]])
 
-'''add in status, time it left the hub, and time delivered '''
+
+# add in status, time it left the hub, and time delivered
 
 class Package:
     def __init__(self, packageid, address, city, state, zipcode, deadline, mass, notes):
@@ -74,8 +72,13 @@ def loadpackagedata(fileName):
             pNotes = package[7]
 
             p = Package(pId, pAddress, pCity, pState, pZipcode, pDeadline, pMass, pNotes)
+            # print(p)
 
             myHash.insert(pId, p)
+
+class loadDistanceData(fileName):
+    with open(fileName) as distances
+        distanceData = csv.reader(distances)
 
 
 myHash = HashMap()
