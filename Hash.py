@@ -75,11 +75,11 @@ def loadpackagedata(fileName):
             # print(p)
 
             myHash.insert(pId, p)
-
+'''
 class loadDistanceData(fileName):
     with open(fileName) as distances
         distanceData = csv.reader(distances)
-
+'''
 
 myHash = HashMap()
 
@@ -89,3 +89,22 @@ for i in range(len(myHash.table)+1):
     print("Package: {}" .format(myHash.search(i+1)))
 
 
+def loadDistanceData(disData):
+    with open('distanceData.csv') as pgCsv:
+        data = csv.reader(pgCsv, delimiter=',')
+
+        for d in data:
+            row = []
+            for col in d:
+                if (col != ''):
+                    row.append(float(col))
+                else:
+                    row.append(None)
+            disData.append(row)
+
+distanceData = []
+
+loadDistanceData(distanceData)
+print(distanceData)
+
+# Finish adding address to a list, then continue to C in imp steps.
