@@ -102,9 +102,30 @@ def loadDistanceData(disData):
                     row.append(None)
             disData.append(row)
 
+
 distanceData = []
 
 loadDistanceData(distanceData)
 print(distanceData)
 
 # Finish adding address to a list, then continue to C in imp steps.
+
+
+def loadAddressData(addData):
+    with open('addressData.csv') as addCsv:
+        data = csv.reader(addCsv, delimiter=',')
+
+        for d in data:
+            row = []
+            for col in d:
+                if (col != ''):
+                    row.append(col)
+                else:
+                    row.append(None)
+            addData.append(row)
+
+
+addressData = []
+
+loadAddressData(addressData)
+print(addressData)

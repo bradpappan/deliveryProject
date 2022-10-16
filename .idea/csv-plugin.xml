@@ -3,20 +3,6 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\WGUPS Distance Table.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="|" />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\WGUPS Package File.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="|" />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\addressData.csv">
           <value>
             <Attribute>
@@ -32,13 +18,6 @@
           </value>
         </entry>
         <entry key="\packageFile.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\~$WGUPS Package File.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />
