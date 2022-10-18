@@ -1,8 +1,5 @@
 # Hash map
 
-import csv
-
-
 class HashMap:
     def __init__(self, initial_capacity=40):
         self.table = []
@@ -40,92 +37,19 @@ class HashMap:
                 bucket_list.remove([kv[0], kv[1]])
 
 
-# add in status, time it left the hub, and time delivered
-
-class Package:
-    def __init__(self, packageid, address, city, state, zipcode, deadline, mass, notes):
-        self.packageid = packageid
-        self.address = address
-        self.city = city
-        self.state = state
-        self.zipcode = zipcode
-        self.deadline = deadline
-        self.mass = mass
-        self.notes = notes
-
-    def __str__(self):
-        return "%s, %s, %s, %s, %s, %s, %s, %s," % (self.packageid, self.address, self.city, self.state, self.zipcode, self.deadline, self.mass, self.notes)
-
-
-def loadpackagedata(fileName):
-    with open(fileName) as packages:
-        packageData = csv.reader(packages, delimiter=',')
-        next(packageData)
-        for package in packageData:
-            pId = int(package[0])
-            pAddress = package[1]
-            pCity = package[2]
-            pState = package[3]
-            pZipcode = package[4]
-            pDeadline = package[5]
-            pMass = package[6]
-            pNotes = package[7]
-
-            p = Package(pId, pAddress, pCity, pState, pZipcode, pDeadline, pMass, pNotes)
-            # print(p)
-
-            myHash.insert(pId, p)
-'''
-class loadDistanceData(fileName):
-    with open(fileName) as distances
-        distanceData = csv.reader(distances)
-'''
-
 myHash = HashMap()
-
-loadpackagedata('packageFile.csv')
 
 for i in range(len(myHash.table)+1):
     print("Package: {}" .format(myHash.search(i+1)))
 
 
-def loadDistanceData(disData):
-    with open('distanceData.csv') as pgCsv:
-        data = csv.reader(pgCsv, delimiter=',')
-
-        for d in data:
-            row = []
-            for col in d:
-                if (col != ''):
-                    row.append(float(col))
-                else:
-                    row.append(None)
-            disData.append(row)
 
 
-distanceData = []
+# add in status, time it left the hub, and time delivered
+# To find the address in the distance data, will need a address lookup function to locate which address is in which column.
+# Need to call the address table twice, need a source and the destination. That will be whats plugged into the function.
+# Will need to return the column number for address, then return the distanceData, then go back and locate the number in the distance data
+# Nearest neighbor and manual loading, put the packages that need delivered early 1st truck
+# Put the late packages on truck 2
+# Truck 3 gets the rest
 
-loadDistanceData(distanceData)
-print(distanceData)
-
-# Finish adding address to a list, then continue to C in imp steps.
-
-
-def loadAddressData(addData):
-    with open('addressData.csv') as addCsv:
-        data = csv.reader(addCsv, delimiter=',')
-
-        for d in data:
-            row = []
-            for col in d:
-                if (col != ''):
-                    row.append(col)
-                else:
-                    row.append(None)
-            addData.append(row)
-
-
-addressData = []
-
-loadAddressData(addressData)
-print(addressData)
