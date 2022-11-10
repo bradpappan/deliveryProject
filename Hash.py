@@ -19,7 +19,7 @@ class HashMap:
         bucket_list.append(key_value)
         return True
 
-    def search (self, key):
+    def search(self, key):
         bucket = hash(key) % len(self.table)
         bucket_list = self.table[bucket]
 

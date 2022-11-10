@@ -1,7 +1,7 @@
 import csv
 
 
-def loadDistanceData(disData):
+def load_distance_data(dis_data):
     with open('csvFiles/distanceData.csv') as pgCsv:
         data = csv.reader(pgCsv, delimiter=',')
 
@@ -12,16 +12,16 @@ def loadDistanceData(disData):
                     row.append(float(col))
                 else:
                     row.append(None)
-            disData.append(row)
+            dis_data.append(row)
 
 
-distanceData = []
+distance_data = []
 
-loadDistanceData(distanceData)
-print(distanceData)
+load_distance_data(distance_data)
+print(distance_data)
 
 
-def loadAddressData(addData):
+def load_address_data(add_data):
     with open('csvFiles/addressData.csv') as addCsv:
         data = csv.reader(addCsv, delimiter=',')
 
@@ -32,10 +32,19 @@ def loadAddressData(addData):
                     row.append(col)
                 else:
                     row.append(None)
-            addData.append(row)
+            add_data.append(row)
 
 
-addressData = []
+address_data = []
 
-loadAddressData(addressData)
-print(addressData)
+load_address_data(address_data)
+print(address_data)
+
+with open('csvFiles/distanceData.csv') as distanceNumbers:
+    distanceCsv = list(csv.reader(distanceNumbers, delimiter=','))
+
+with open('csvFiles/addressData.csv') as addresses:
+    addressCsv = list(csv.reader(addresses, delimiter=','))
+
+    def get_distance(row, col, total):
+        distance
