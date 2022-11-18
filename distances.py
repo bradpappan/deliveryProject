@@ -1,5 +1,8 @@
 import csv
-import sys
+import datetime
+
+import truck
+from Hash import my_hash
 
 
 def load_distance_data(dis_data):
@@ -47,89 +50,53 @@ with open('csvFiles/distanceData.csv') as distance_numbers:
 with open('csvFiles/addressData.csv') as addresses:
     address_csv = list(csv.reader(addresses, delimiter=','))
 
-    def get_distance(row, col, total):
+    def _distance(row, col, total):
         distance = distance_csv[row][col]
         if distance == '':
             distance = distance_csv[row][col]
         return total + float(distance)
 
-    def current_distance(row, col):
-        distance = distance_csv[row][col]
+    def get_distance(row, column):
+        distance = distance_csv[row][column]
         if distance == '':
-            distance = distance_csv[row][col]
+            distance = distance_csv[row][column]
         return float(distance)
 
-
-first_truck = []
-first_truck_index_list = []
-second_truck = []
-second_truck_index_list = []
-third_truck = []
-third_truck_index_list = []
+    def get_address(address):
+        for row in address_csv:
+            if address in row[2]:
+                return int(row[0])
 
 
-def shortest_path(truck_list, truck, current_location):
-    if len(list) == 0:
-        return list
-    else:
-        try:
-            lowest_number = 100.0
-            new_location = 0.0
-            for index in truck_list:
-                if current_distance(current_location, int(index[1])) <= lowest_number:
-                    lowest_number = current_distance(current_location, int(index[1]))
-                    new_location = int(index[1])
-            for index in truck_list:
-                if current_distance(current_location, int(index[1])) == lowest_number:
-                    if truck == 1:
-                        first_truck.append(index)
-                        first_truck_index_list.append(index[1])
-                        pop_value = truck_list.index(index)
-                        truck_list.pop(pop_value)
-                        current_location = new_location
-                        shortest_path(truck_list, 1, current_location)
-                    elif truck == 2:
-                        second_truck.append(index)
-                        second_truck_index_list.append(index[1])
-                        pop_value = truck_list.index(index)
-                        truck_list.pop(pop_value)
-                        current_location = new_location
-                        shortest_path(truck_list, 2, current_location)
-                    elif truck == 3:
-                        third_truck.append(index)
-                        second_truck_index_list.append(index[1])
-                        pop_value = truck_list.index(index)
-                        truck_list.pop(pop_value)
-                        current_location = new_location
-                        shortest_path(truck_list, 3, current_location)
-        except IndexError:
-            pass
+def shortest_path(package_order):
+    needs_delivery = []
+    for package_id in package_order.packages:
+        package = my_hash.search(package_id)
+        needs_delivery.append(package)
+    package_order.packages.clear()
+
+    while len(needs_delivery) > 0:
+        _address = 1000
+        _package = None
+
+        for package in needs_delivery:
+            if get_distance(get_address(package_order.address), get_address(package.address)) <= _address:
+                _address = get_distance(get_address(package_order.address), get_address(package.address))
+                _package = package
+        package_order.packages.append(_package.package_id)
+        needs_delivery.remove(_package)
+        package_order.mileage += _address
+        package_order.address = _package.address
+        package_order.time += datetime.timedelta(hours=_address / 18)
+        _package.delivery_time = package_order.time_delivered
+        _package.departure_time = package_order.time_departed
 
 
-first_truck_index_list.insert(0, '0')
-second_truck_index_list.insert(0, '0')
-third_truck_index_list.insert(0, '0')
+shortest_path(truck.first_truck)
+shortest_path(truck.second_truck)
 
 
-def first_truck_index():
-    return first_truck_index_list
+truck.third_truck = min(truck.first_truck, truck.second_truck)
+shortest_path(truck.third_truck)
 
 
-def first_truck_list():
-    return first_truck
-
-
-def second_truck_index():
-    return second_truck_index_list
-
-
-def second_truck_list():
-    return second_truck
-
-
-def third_truck_index():
-    return third_truck_index_list
-
-
-def third_truck_list():
-    return third_truck
