@@ -1,4 +1,5 @@
 import csv
+import datetime
 
 from Hash import my_hash
 
@@ -14,10 +15,13 @@ class Package:
         self.mass = mass
         self.notes = notes
         self.status = status
+        self.depart_time = None
+        self.delivery_time = None
 
     def __str__(self):
-        return "%s, %s, %s, %s, %s, %s, %s, %s, %s" % (self.package_id, self.address, self.city, self.state,
-                                                       self.zip_code, self.deadline, self.mass, self.notes, self.status)
+        return "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s" % (self.package_id, self.address, self.city, self.state,
+                                                           self.zip_code, self.deadline, self.mass, self.notes,
+                                                           self.status, self.delivery_time)
 
 
 def load_package_data(file_name):
@@ -33,7 +37,7 @@ def load_package_data(file_name):
             p_deadline = package[5]
             p_mass = package[6]
             p_notes = package[7]
-            p_status = "At hub"
+            p_status = "Currently at the hub"
 
             p = Package(p_id, p_address, p_city, p_state, p_zipcode, p_deadline, p_mass, p_notes, p_status)
             print(p)
@@ -50,5 +54,12 @@ def current_status(self, convert_time):
     elif self.departure > convert_time:
         self.status = "On its way"
     else:
-        self.status = "Still at the hub"
+        self.status = "Currently at the hub"
 
+
+first_truck = ("4001 South 700 East", 0.0, [1, 13, 14, 15, 16, 20, 29, 30, 31, 34, 37, 40],
+               datetime.timedelta(hours=8))
+second_truck = ("4001 South 700 East", 0.0, [3, 6, 12, 17, 18, 19, 21, 22, 23, 24, 26, 27, 35, 36, 38, 39],
+                datetime.timedelta(hours=10, minutes=20))
+third_truck = ("4001 South 700 East", 0.0, [2, 4, 5, 6, 7, 8, 9, 10, 11, 25, 28, 32, 33],
+               datetime.timedelta(hours=9, minutes=5))

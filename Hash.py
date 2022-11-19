@@ -41,15 +41,3 @@ my_hash = HashMap()
 
 for i in range(len(my_hash.table)+1):
     print("Package: {}" .format(my_hash.search(i)))
-
-
-
-
-# add in status, time it left the hub, and time delivered
-# To find the address in the distance data, will need a address lookup function to locate which address is in which column.
-# Need to call the address table twice, need a source and the destination. That will be whats plugged into the function.
-# Will need to return the column number for address, then return the distanceData, then go back and locate the number in the distance data
-# Nearest neighbor and manual loading, put the packages that need delivered early 1st truck
-# Put the late packages on truck 2
-# Truck 3 gets the rest
-

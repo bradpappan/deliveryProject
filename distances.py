@@ -1,6 +1,6 @@
 import csv
 import datetime
-
+import packages
 import truck
 from Hash import my_hash
 
@@ -92,11 +92,11 @@ def shortest_path(package_order):
         _package.departure_time = package_order.time_departed
 
 
-shortest_path(truck.first_truck)
-shortest_path(truck.second_truck)
+shortest_path(packages.first_truck)
+shortest_path(packages.second_truck)
 
 
-truck.third_truck = min(truck.first_truck, truck.second_truck)
-shortest_path(truck.third_truck)
+truck.third_truck = min(packages.first_truck, packages.second_truck)
+shortest_path(packages.third_truck)
 
 
