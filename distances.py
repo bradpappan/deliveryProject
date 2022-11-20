@@ -1,13 +1,12 @@
 import csv
 import datetime
 import packages
-import truck
 from Hash import my_hash
 
 
 def load_distance_data(dis_data):
-    with open('csvFiles/distanceData.csv') as pgCsv:
-        data = csv.reader(pgCsv, delimiter=',')
+    with open('csvFiles/distanceData.csv') as pg_csv:
+        data = csv.reader(pg_csv, delimiter=',')
 
         for d in data:
             row = []
@@ -22,7 +21,6 @@ def load_distance_data(dis_data):
 distance_data = []
 
 load_distance_data(distance_data)
-print(distance_data)
 
 
 def load_address_data(add_data):
@@ -42,7 +40,6 @@ def load_address_data(add_data):
 address_data = []
 
 load_address_data(address_data)
-print(address_data)
 
 with open('csvFiles/distanceData.csv') as distance_numbers:
     distance_csv = list(csv.reader(distance_numbers, delimiter=','))
@@ -96,7 +93,7 @@ shortest_path(packages.first_truck)
 shortest_path(packages.second_truck)
 
 
-truck.third_truck = min(packages.first_truck, packages.second_truck)
+packages.third_truck = min(packages.first_truck, packages.second_truck)
 shortest_path(packages.third_truck)
 
 
