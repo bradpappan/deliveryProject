@@ -59,8 +59,8 @@ def shortest_path(package_order):
         next_package = None
         for package in needs_delivery:
             if get_distance(address_data.index(package_order.address), address_data.index(package.address)) <= next_address:
-                _address = get_distance(address_data.index(package_order.address), address_data.index(package.address))
-                _package = package
+                next_address = get_distance(address_data.index(package_order.address), address_data.index(package.address))
+                next_package = package
         package_order.packages.append(next_package.package_id)
         needs_delivery.remove(next_package)
         package_order.mileage += next_address
@@ -72,8 +72,6 @@ def shortest_path(package_order):
 
 shortest_path(packages.first_truck)
 shortest_path(packages.second_truck)
-
-
 packages.third_truck = min(packages.first_truck, packages.second_truck)
 shortest_path(packages.third_truck)
 
