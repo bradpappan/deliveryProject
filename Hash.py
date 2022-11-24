@@ -39,5 +39,5 @@ class HashMap:
 
 my_hash = HashMap()
 
-for i in range(len(my_hash.table)+1):
-    print("Package: {}" .format(my_hash.search(i)))
+#for i in range(len(my_hash.table)+1):
+    #print("Package: {}" .format(my_hash.search(i)))

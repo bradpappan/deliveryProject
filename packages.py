@@ -40,7 +40,6 @@ def load_package_data(file_name):
             p_status = "Currently at the hub"
 
             p = Package(p_id, p_address, p_city, p_state, p_zipcode, p_deadline, p_mass, p_notes, p_status)
-            print(p)
 
             my_hash.insert(p_id, p)
 
