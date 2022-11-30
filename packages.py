@@ -27,7 +27,6 @@ class Package:
 def load_package_data(file_name):
     with open(file_name) as packages:
         package_data = csv.reader(packages, delimiter=',')
-        next(package_data)
         for package in package_data:
             p_id = int(package[0])
             p_address = package[1]
@@ -45,6 +44,9 @@ def load_package_data(file_name):
 
 
 load_package_data('csvFiles/packageFile.csv')
+
+for i in range(len(my_hash.table)+1):
+    print("Package: {}" .format(my_hash.search(i)))
 
 
 def current_status(self, convert_time):
