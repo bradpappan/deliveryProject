@@ -29,9 +29,9 @@ with open('csvFiles/addressData.csv') as addresses:
 
 
 def get_distance(row, column):
-    distance = distance_data[row][column]
+    distance = distance_csv[row][column]
     if distance == '':
-        distance = distance_data[row][column]
+        distance = distance_csv[column][row]
 
     return float(distance)
 
@@ -63,11 +63,12 @@ def load_package_data(file_name):
 
 distance_data = []
 load_distance_data(distance_data)
+#print(distance_data)
 my_hash = HashMap()
 address_data = []
 load_address_data(address_data)
 load_package_data('csvFiles/packageFile.csv')
-my_hash.display()
+#my_hash.display()
 
 
 first_truck = truck.Truck("4001 South 700 East", 0.0, [1, 13, 14, 15, 16, 20, 29, 30, 31, 34, 37, 40],
@@ -83,6 +84,7 @@ def shortest_path(package_order):
     for package_id in package_order.packages:
         package = my_hash.search(package_id)
         needs_delivery.append(package)
+        #print(needs_delivery)
     package_order.packages.clear()
     while len(needs_delivery) > 0:
         next_address = 3000
@@ -114,7 +116,8 @@ def total_miles():
 #    print("Package: {}" .format(my_hash.search(i)))
 
 print("Parcel Service")
-print("Total miles for all three truck delivery routes is: " + total_miles())
+print("Total miles for all three truck delivery routes is: ")
+print(total_miles())
 
 program_start = input("Type 'begin' to start the program and display where the packages are by time, or type "
                       "'exit' to quit.")
