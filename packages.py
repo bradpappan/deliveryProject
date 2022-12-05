@@ -1,7 +1,6 @@
 import csv
-import datetime
-import truck
-from Hash import my_hash
+
+from main import my_hash
 
 
 class Package:
@@ -43,12 +42,6 @@ def load_package_data(file_name):
             my_hash.insert(p_id, p)
 
 
-load_package_data('csvFiles/packageFile.csv')
-
-for i in range(len(my_hash.table)+1):
-    print("Package: {}" .format(my_hash.search(i)))
-
-
 def current_status(self, convert_time):
     if self.delivery_time < convert_time:
         self.status = "Delivered on time"
@@ -56,15 +49,3 @@ def current_status(self, convert_time):
         self.status = "On its way"
     else:
         self.status = "Currently at the hub"
-
-
-first_truck = truck.Truck("4001 South 700 East", 0.0, [1, 13, 14, 15, 16, 20, 29, 30, 31, 34, 37, 40],
-                          datetime.timedelta(hours=8))
-second_truck = truck.Truck("4001 South 700 East", 0.0, [3, 6, 12, 17, 18, 19, 21, 22, 23, 24, 26, 27, 35, 36, 38, 39],
-                           datetime.timedelta(hours=10, minutes=20))
-third_truck = truck.Truck("4001 South 700 East", 0.0, [2, 4, 5, 6, 7, 8, 9, 10, 11, 25, 28, 32, 33],
-                          datetime.timedelta(hours=9, minutes=5))
-
-
-def total_miles():
-    return first_truck.mileage + second_truck.mileage + third_truck.mileage

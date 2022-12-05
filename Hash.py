@@ -35,8 +35,3 @@ class HashMap:
         for kv in bucket_list:
             if kv[0] == key:
                 bucket_list.remove([kv[0], kv[1]])
-
-
-my_hash = HashMap()
-
-
