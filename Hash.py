@@ -35,3 +35,10 @@ class HashMap:
         for kv in bucket_list:
             if kv[0] == key:
                 bucket_list.remove([kv[0], kv[1]])
+
+    def display(self):
+        bucket_number = 0
+        for bucket in self.table:
+            print(str(bucket_number) + "->")
+            print(bucket)
+            bucket_number += 1
