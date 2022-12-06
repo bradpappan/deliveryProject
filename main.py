@@ -81,30 +81,31 @@ third_truck = truck.Truck("4001 South 700 East", 0.0, [2, 4, 5, 6, 7, 8, 9, 10, 
 
 def shortest_path(package_order):
     needs_delivery = []
-    for package_id in package_order.packages:
-        package = my_hash.search(package_id)
+    for package_on_truck in package_order.packages:
+        package = my_hash.search(package_on_truck)
         needs_delivery.append(package)
         #print(needs_delivery)
     package_order.packages.clear()
     while len(needs_delivery) > 0:
-        next_address = 3000
-        next_package = None
+        new_address = 3000
+        new_package = None
         for package in needs_delivery:
-            if get_distance(get_address(package_order.address), get_address(package.address)) <= next_address:
-                next_address = get_distance(get_address(package_order.address), get_address(package.address))
-                next_package = package
-        package_order.packages.append(next_package.package_id)
-        needs_delivery.remove(next_package)
-        package_order.mileage += next_address
-        package_order.address = next_package.address
-        package_order.time_delivered += datetime.timedelta(hours=next_address / 18)
-        next_package.delivery_time = package_order.time_delivered
-        next_package.departure_time = package_order.departure_time
+            if get_distance(get_address(package_order.address), get_address(package.address)) <= new_address:
+                new_address = get_distance(get_address(package_order.address), get_address(package.address))
+                new_package = package
+        package_order.packages.append(new_package.package_id)
+        needs_delivery.remove(new_package)
+        package_order.mileage += new_address
+        package_order.address = new_package.address
+        package_order.time_delivered += datetime.timedelta(hours=new_address / 18)
+        new_package.delivery_time = package_order.time_delivered
+        new_package.depart_time = package_order.departure_time
+        #print(package_order.time_delivered)
+        #print(package_order.departure_time)
 
 
 shortest_path(first_truck)
 shortest_path(second_truck)
-third_truck.departure_time = min(first_truck.time_delivered, second_truck.time_delivered)
 shortest_path(third_truck)
 
 
