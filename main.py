@@ -123,9 +123,25 @@ program_start = input("Type 'begin' to start the program and display where the p
 
 if program_start == "begin":
     try:
-        location_lookup = input("Enter a time to check where a package is using HH:MM:SS format. ")
-        (hh, mm, ss) = location_lookup.split(":")
-        time_conversion = datetime.timedelta(hours=int(hh), minutes=int(mm), seconds=int(ss))
+        package_time = input("Please enter a time to check on the statuses of packages using the 'HH:MM' format. ")
+        (hh, mm) = package_time.split(":")
+        convert_time = datetime.timedelta(hours=int(hh), minutes=int(mm))
+
+        package_amount = input("Please select one of the following options.\n 1)Search for one package.\n 2)Search for "
+                               "all packages.\n")
+
+        if package_amount == "1":
+            single_package = input("Enter a package ID. ")
+            package = my_hash.search(int(single_package))
+            package.current_status(convert_time)
+
+            print(str(package))
+
+        elif package_amount == "2":
+            for package_id in range(1, 41):
+                all_packages = my_hash.search(package_id)
+                all_packages.current_status(convert_time)
+                print(str(all_packages))
 
     except ValueError:
         print("Invalid entry")

@@ -23,11 +23,10 @@ class Package:
                                                            self.zip_code, self.deadline, self.mass, self.notes,
                                                            self.status, self.delivery_time)
 
-
-def current_status(self, convert_time):
-    if self.delivery_time < convert_time:
-        self.status = "Delivered on time"
-    elif self.departure > convert_time:
-        self.status = "On its way"
-    else:
-        self.status = "Currently at the hub"
+    def current_status(self, convert_time):
+        if self.delivery_time < convert_time:
+            self.status = "Delivered on time"
+        elif self.departure_time > convert_time:
+            self.status = "On its way"
+        else:
+            self.status = "Currently at the hub"
