@@ -93,13 +93,15 @@ def shortest_path(package_order):
             if get_distance(get_address(package_order.address), get_address(package.address)) <= new_address:
                 new_address = get_distance(get_address(package_order.address), get_address(package.address))
                 new_package = package
+
         package_order.packages.append(new_package.package_id)
-        needs_delivery.remove(new_package)
         package_order.mileage += new_address
         package_order.address = new_package.address
         package_order.time_delivered += datetime.timedelta(hours=new_address / 18)
         new_package.delivery_time = package_order.time_delivered
         new_package.depart_time = package_order.departure_time
+        needs_delivery.remove(new_package)
+
         #print(package_order.time_delivered)
         #print(package_order.departure_time)
 
@@ -126,7 +128,7 @@ if program_start == "begin":
     try:
         package_time = input("Please enter a time to check on the statuses of packages using the 'HH:MM' format. ")
         (hh, mm) = package_time.split(":")
-        convert_time = datetime.timedelta(hours=int(hh), minutes=int(mm))
+        time_status = datetime.timedelta(hours=int(hh), minutes=int(mm))
 
         package_amount = input("Please select one of the following options.\n 1)Search for one package.\n 2)Search for "
                                "all packages.\n")
@@ -134,14 +136,14 @@ if program_start == "begin":
         if package_amount == "1":
             single_package = input("Enter a package ID. ")
             package = my_hash.search(int(single_package))
-            package.current_status(convert_time)
+            package.current_status(time_status)
 
             print(str(package))
 
         elif package_amount == "2":
             for package_id in range(1, 41):
                 all_packages = my_hash.search(package_id)
-                all_packages.current_status(convert_time)
+                all_packages.current_status(time_status)
                 print(str(all_packages))
 
     except ValueError:

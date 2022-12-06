@@ -16,18 +16,22 @@ class Package:
     def __str__(self):
         return "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s" % (self.package_id, self.address, self.city, self.state,
                                                            self.zip_code, self.deadline, self.mass, self.notes,
-                                                           self.delivery_time, self.status)
+                                                           self.status, self.delivery_time)
 
     def __repr__(self):
         return "%s, %s, %s, %s, %s, %s, %s, %s, %s, %s" % (self.package_id, self.address, self.city, self.state,
                                                            self.zip_code, self.deadline, self.mass, self.notes,
-                                                           self.delivery_time, self.status)
+                                                           self.status, self.delivery_time)
 
-    def current_status(self, convert_time):
-        #print(convert_time)
-        if self.delivery_time < convert_time:
+    def current_status(self, time_status):
+        #print(time_status)
+        if self.delivery_time < time_status:
             self.status = "Delivered on time"
-        elif self.depart_time > convert_time:
+
+        elif self.depart_time < time_status:
+            #print(self.depart_time)
+            #print(time_status)
             self.status = "On its way"
+
         else:
             self.status = "Currently at the hub"
