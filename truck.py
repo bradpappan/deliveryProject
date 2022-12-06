@@ -1,4 +1,4 @@
-
+# Truck class
 class Truck:
 
     def __init__(self, address, mileage, packages, departure_time):

@@ -1,4 +1,4 @@
-
+# Package class
 class Package:
     def __init__(self, package_id, address, city, state, zip_code, deadline, mass, notes, status):
         self.package_id = package_id
