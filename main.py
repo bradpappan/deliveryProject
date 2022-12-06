@@ -91,6 +91,7 @@ second_truck = truck.Truck("4001 South 700 East", 0.0, [3, 6, 12, 17, 18, 19, 21
 third_truck = truck.Truck("4001 South 700 East", 0.0, [2, 4, 5, 6, 7, 8, 9, 10, 11, 25, 28, 32, 33],
                           datetime.timedelta(hours=9, minutes=5))
 
+
 # Nearest neighbor algorithm that uses data from csv files to re-order packages for efficient delivery
 def shortest_path(package_order):
     needs_delivery = []
