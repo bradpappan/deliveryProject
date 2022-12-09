@@ -84,9 +84,9 @@ load_package_data('csvFiles/packageFile.csv')
 # my_hash.display()
 
 # Truck objects that manually assign hub address, loads packages, and assigns departure time
-first_truck = truck.Truck("4001 South 700 East", 0.0, [1, 13, 14, 15, 16, 20, 29, 30, 31, 34, 37, 40],
+first_truck = truck.Truck("4001 South 700 East", 0.0, [1, 13, 14, 15, 16, 19, 20, 29, 30, 31, 34, 37, 40],
                           datetime.timedelta(hours=8))
-second_truck = truck.Truck("4001 South 700 East", 0.0, [3, 6, 12, 17, 18, 19, 21, 22, 23, 24, 26, 27, 35, 36, 38, 39],
+second_truck = truck.Truck("4001 South 700 East", 0.0, [3, 6, 12, 17, 18, 21, 22, 23, 24, 26, 27, 35, 36, 38, 39],
                            datetime.timedelta(hours=10, minutes=20))
 third_truck = truck.Truck("4001 South 700 East", 0.0, [2, 4, 5, 6, 7, 8, 9, 10, 11, 25, 28, 32, 33],
                           datetime.timedelta(hours=9, minutes=5))
